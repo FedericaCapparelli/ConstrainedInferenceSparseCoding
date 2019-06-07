@@ -13,7 +13,8 @@ When trained with natural images, the model predicts
 2) a connectivity structure linking neurons with similar orientation preferences matching the typical patterns found for long-ranging horizontal axons and feedback projections in visual cortex.
 Such quantities are sufficient to specify completely the connectivity of the network.
 
-To run the algorithm to learn the receptive fields (_dictionary_) and the long-range interactions, execute the function ```Job01_LearnDictionary``` and ```Job02_LearnLongRange```
+To run the algorithm to learn the receptive fields (_dictionary_) and the long-range interactions, execute the functions ```Job01_LearnDictionary``` and ```Job02_LearnLongrange```. The scripts ```param_job01_LearnDictionary``` and ```param_job02_LearnDLongrange``` contain examples of how to structure the parameters.
+Aftern learning the dictionary (```job01```) and before learning the long-range interactions (```job02```) one 
 
 ## Running context-modulation experiments
 Subjected to contextual stimuli typically used in empirical studies, our model replicates several hallmark effects of
