@@ -9,12 +9,15 @@ This repository contains the code to implement the model described in the manusc
 
 ## Learning connectivity structures 
 When trained with natural images, the model predicts
-- feature vectors that resemble Gabor filters, having spatial properties similar to those of V1 receptive fields
-- a connectivity structure linking neurons with similar orientation preferences matching the typical patterns found for long-ranging horizontal axons and feedback projections in visual cortex 
+1) feature vectors that resemble Gabor filters, having spatial properties similar to those of V1 receptive fields;
+2) a connectivity structure linking neurons with similar orientation preferences matching the typical patterns found for long-ranging horizontal axons and feedback projections in visual cortex.
+Such quantities are sufficient to specify completely the connectivity of the network.
+
+To run the algorithm to learn the receptive fields (_dictionary_) and the long-range interactions, execute the function ```Job01_LearnDictionary``` and ```Job02_LearnLongRange```
 
 ## Running context-modulation experiments
 Subjected to contextual stimuli typically used in empirical studies, our model replicates several hallmark effects of
 contextual processing
-- surround suppression
-- modulations dependent on the orientation of the surround
-- luminance-dependent effects
+1) surround suppression
+2) modulations dependent on the orientation of the surround
+3) luminance-dependent effects
