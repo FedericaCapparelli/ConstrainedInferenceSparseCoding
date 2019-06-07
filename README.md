@@ -25,3 +25,12 @@ contextual processing
 1) surround suppression
 2) modulations dependent on the orientation of the surround
 3) luminance-dependent effects
+
+#### [Basic]
+To run the contextual-modulation experiments, first investigate select a subset of cells that responds well to small oriented stimuli centered in the center of the visual field. This is done executing first ```Job03_SizeTuning_4loc``` and then  ```Job04_DataSelectionAndOptimalStimuli```.
+
+The functions ```Job05_AnalysisSizeTuning```, ```Job06_OrientationModulation_4loc``` and ```Job05_ContrastModulation_4loc```, 
+
+=======================================
+
+For more details or detailed description of the routines, check the help of each function!
