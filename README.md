@@ -22,15 +22,15 @@ Aftern learning the dictionary (```job01```) and before learning the long-range 
 ## Running context-modulation experiments
 Subjected to contextual stimuli typically used in empirical studies, our model replicates several hallmark effects of
 contextual processing
-1) surround suppression
-2) modulations dependent on the orientation of the surround
-3) luminance-dependent effects
+1) surround suppression (following _Walker GA, Ohzawa I, Freeman RD. Suppression outside the classical cortical receptive field._)
+2) modulations dependent on the orientation of the surround (following _Sengpiel F, Sen A, Blakemore C. "Characteristics of surround inhibition in cat area 17."_)
+3) luminance-dependent effects (following _Polat U, Mizobe K, Pettet MW, Kasamatsu T, Norcia AM. Collinear stimuli regulate visual responses depending on cell’s contrast threshold._)
 
 #### [Basic]
 To run the contextual-modulation experiments, first investigate select a subset of cells that responds well to small oriented stimuli centered in the center of the visual field. This is done executing first ```Job03_SizeTuning_4loc``` and then  ```Job04_DataSelectionAndOptimalStimuli```.
 
-The functions ```Job05_AnalysisSizeTuning```, ```Job06_OrientationModulation_4loc``` and ```Job05_ContrastModulation_4loc```, 
+The functions ```Job05_AnalysisSizeTuning```, ```Job06_OrientationModulation_4loc``` and ```Job07_ContrastModulation_4loc``` contain the code to perform the experiments mentioned above (each function follows the experimental procedures indicated in the correspondent papers).
 
-=======================================
+***
 
-For more details or detailed description of the routines, check the help of each function!
+#### For more details or detailed description of the routines, check the help of each function!
