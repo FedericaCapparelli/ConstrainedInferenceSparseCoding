@@ -13,8 +13,11 @@ When trained with natural images, the model predicts
 2) a connectivity structure linking neurons with similar orientation preferences matching the typical patterns found for long-ranging horizontal axons and feedback projections in visual cortex.
 Such quantities are sufficient to specify completely the connectivity of the network.
 
+#### [Basic]
 To run the algorithm to learn the receptive fields (_dictionary_) and the long-range interactions, execute the functions ```Job01_LearnDictionary``` and ```Job02_LearnLongrange```. The scripts ```param_job01_LearnDictionary``` and ```param_job02_LearnDLongrange``` contain examples of how to structure the parameters.
-Aftern learning the dictionary (```job01```) and before learning the long-range interactions (```job02```) one 
+
+#### [Basic + Optional]
+Aftern learning the dictionary (```job01```) and before learning the long-range interactions (```job02```) one can optionally execute ```Job01optional_FittingGaborToDict```. This script contains a procedure to fit the previously learned dictionary to Gabor functions (this is useful to parametrize the receptive fields in terms of orientation, spatial frequency, position, size, ...). Moreover, such fitting procedure sorts the dictionary elements according to their orientation: running ```job02``` on such sorted dictionary has the advantage of making the structure of the long-range connection matrix more explicit.
 
 ## Running context-modulation experiments
 Subjected to contextual stimuli typically used in empirical studies, our model replicates several hallmark effects of
