@@ -26,7 +26,12 @@ contextual processing
 2) modulations dependent on the orientation of the surround (following _Sengpiel F, Sen A, Blakemore C. "Characteristics of surround inhibition in cat area 17."_)
 3) luminance-dependent effects (following _Polat U, Mizobe K, Pettet MW, Kasamatsu T, Norcia AM. Collinear stimuli regulate visual responses depending on cell’s contrast threshold._)
 
-#### [Basic]
+#### [Basic 1-patch surround]
+To run the contextual-modulation experiments, first investigate select a subset of cells that responds well to small oriented stimuli centered in the center of the visual field. This is done executing first ```Job03_SizeTuning_1loc``` and then  ```Job04_DataSelectionAndOptimalStimuli```.
+
+The functions ```Job05_AnalysisSizeTuning```, ```Job06_OrientationModulation_1loc``` and ```Job07_ContrastModulation_1loc``` contain the code to perform the experiments mentioned above (each function follows the experimental procedures indicated in the correspondent papers).
+
+#### [Basic 4-patch surround]
 To run the contextual-modulation experiments, first investigate select a subset of cells that responds well to small oriented stimuli centered in the center of the visual field. This is done executing first ```Job03_SizeTuning_4loc``` and then  ```Job04_DataSelectionAndOptimalStimuli```.
 
 The functions ```Job05_AnalysisSizeTuning```, ```Job06_OrientationModulation_4loc``` and ```Job07_ContrastModulation_4loc``` contain the code to perform the experiments mentioned above (each function follows the experimental procedures indicated in the correspondent papers).
