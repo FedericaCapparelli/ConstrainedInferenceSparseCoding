@@ -1,4 +1,4 @@
-function [an, bn] = OrientationModulation_4loc(D, C, V, n, o, s, r)
+function [an, bn] = OrientationModulation_1loc(D, C, n, o, s, r)
 % This function computes the response of unit n in the network to a
 % compound stimulus where the center is a sinusoidal grating with ori, sp.
 % freq and size set as the cell's preferred ones and the surround is a
@@ -9,8 +9,6 @@ function [an, bn] = OrientationModulation_4loc(D, C, V, n, o, s, r)
 % D         dictionary/input fields
 % C         long-range connections (learned from image patches in an
 %           horizontal configuration)
-% V         long-range connections (learned from image patches in an
-%           vertical configuration)
 % n         index of the recorded cell
 % o         [integer] index that selects the orientation of the stimulus
 % s         [integer] index that selects the spatial frequency of the stimulus
@@ -25,10 +23,10 @@ function [an, bn] = OrientationModulation_4loc(D, C, V, n, o, s, r)
 %%% Aux vars
 [M, N] = size(D);
 resolution = sqrt(M);
-patchsize = [3*resolution 3*resolution];
-m = 3*resolution*(3*resolution-1)/2;
+patchsize = [resolution 2*resolution];
+m = resolution*(resolution-1)/2;
 
-[ci, cj] = ind2sub([3*resolution 3*resolution], m); c_row = ci-0.5; c_col = cj-0.5;
+[ci, cj] = ind2sub([resolution resolution], m); c_row = ci-0.5; c_col = cj-0.5;
 ori_vect = (0:5:179)*pi/180;
 spfr_vect= 0.05:0.025:0.35; % [number of cycles/pixel]
 rad_vect = 2:1:(2*resolution);
@@ -47,7 +45,7 @@ tempFreq = 3/1000; % drifting velocity [mHz]
 from_ms = (T - 1/tempFreq);
 
 %%% Stimulus parameters
-smoothing_slope = 4;
+smoothing_slope = 0.5;
 
 ori_cen = ori_vect(o); % ori_pref;
 spf_pref = spfr_vect(s);
@@ -68,7 +66,7 @@ for q=1:NO
     silly = @(t) SmoothConcentricGratings(patchsize(1), patchsize(2), c_row, c_col, ori_cen, ori_sur, rad_cen, rad_sur, 2*pi*tempFreq*t, 2*pi*tempFreq*t, 1/spf_pref, smoothing_slope);
     
     % Run dynamics
-	[t,a,b] = DynamicsRoutine_4surround(M, N, T, tau_sup, tau_deep, lambda_a, D, C, V, silly);
+    [t,a,b] = DynamicsRoutine_1surround(M, N, T, tau_sup, tau_deep, lambda_a, D, C, silly);
 
     % Save steady-states
     from = find(t>from_ms, 1); % [time steps]

@@ -1,17 +1,30 @@
 function [ya, yb] = SizeTuning_1loc(D, C, s, r, typeStim)
-% Auxiliary variables
+% This function computes the response of all the units in the network to a
+% drifting sinusoidal grating of given radius and spatial frquency.
+% 
+% INPUT
+% D         dictionary/input fields
+% C         long-range connections (learned from image patches in an
+%           horizontal configuration)
+% V         long-range connections (learned from image patches in an
+%           vertical configuration)
+% s         [integer] index that selects the spatial frequency of the stimulus
+%           range 1:13
+% r         [integer] index that selects the radius of the stimulus
+%           range 1:31
+% typeStim  [integer] index that selects the type of stimulus
+%           =1 corresponds to a center-only grating
+%           =2 corresponds to a surround-only grating
+% 
+% OUTPUT
+% ya        response of cells in population a
+% yb        response of cells in population b
+
+%%% Auxiliary variables
 [M, N] = size(D);
 resolution = sqrt(M);
 patchsize = [resolution 2*resolution];
 m = resolution*(resolution-1)/2;
-
-% Model parameters
-lambda_a = 0.5; % dyn.reco.lambda;
-tau_deep = 10; %[ms] % b coeffs
-tau_sup  = 10; %[ms] % a coeffs
-T = 600; % [ms]
-tempFreq = 3/1000; % [mHz]
-from_ms = (T - 1/tempFreq);
 
 [ci, cj] = ind2sub([resolution resolution], m); c_row = ci-0.5; c_col = cj-0.5;
 ori_vect   = (0:5:179)*pi/180; % [radian]
@@ -22,7 +35,15 @@ NO         = numel(ori_vect);
 % NR       = numel(rad_vect);
 % NP       = numel(pha_vect);
 
-% Stimulus parameters
+%%% Model parameters
+lambda_a = 0.5; % sparseness constraint (a)
+tau_deep = 10; % time constant for population b [ms]
+tau_sup  = 10; % time constant for population a [ms]
+T = 600; % duration of stimulus presentation [ms]
+tempFreq = 3/1000; % drifting velocity [mHz]
+from_ms = (T - 1/tempFreq);
+
+%%% Stimulus parameters
 smoothing_slope = 0.5;
 kc = 1; % contrast center
 
@@ -37,11 +58,11 @@ switch typeStim
         rad_sur = [rad Inf];
 end
 
-% Initialize output
+%%% Initialize output
 ya = zeros(4*N, NO);
 yb = zeros(4*N, NO);
 
-% Compute output
+%%% Compute output
 for o=1:NO
     fprintf('\nStart sim for ori %d/%d, freq %d, radius %d\n', o, NO, s, r)
     ori = ori_vect(o);
