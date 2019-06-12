@@ -1,4 +1,4 @@
-function [susu_short, susu_short_long] = Job05_AnalysisSizeTuning(myseed, whichPop)
+function [susu_short, susu_short_long] = Job05_AnalysisSizeTuning(myseed, whichPop, nloc)
 % This function analyse the results from Job03_SizeTuning_4loc.
 % It selects the responsive and tuned cells (for the specified population and 
 % for a particular seed of both models with and withour long-range
@@ -9,11 +9,17 @@ function [susu_short, susu_short_long] = Job05_AnalysisSizeTuning(myseed, whichP
 % INPUT
 % myseed    [integer] seed for random number generator; should match the seed selected to learn the connectivity (PHI/C)
 % whichPop  [string] {'a', 'b'}
+% nloc      [integer] number of surround patches to be considered {1, 4}
 % 
 
 %%% Create folder where to store results
 CurrentFolder = pwd;
-ResFolder = strcat(CurrentFolder, '/contextual_modulation_4locations/seed_', sprintf('%02.0f', myseed), '/Paradigm_1/');
+if nloc==1
+    IntermediateFolder = 'contextual_modulation_4locations';
+elseif nloc==4
+    IntermediateFolder = 'contextual_modulation_1location';
+end
+ResFolder = strcat(CurrentFolder, '/', IntermediateFolder, '/seed_', sprintf('%02.0f', myseed), '/Paradigm_1/');
 if whichPop == 'a'
     FileName = strcat(ResFolder, 'SuSu_VarForPlotting_A.mat');
 else
